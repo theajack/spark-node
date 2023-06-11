@@ -1,0 +1,12 @@
+node_modules
+dist
+cdn
+lerna-debug.log
+.pnpm-debug.log
+bundle.min.js
+bundle.min.js.map
+.DS_Store
+bundles
+ignore
+*.ignore.ts
+npm
