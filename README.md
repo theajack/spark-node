@@ -3,14 +3,14 @@
  * @Date: 2023-02-13 17:02:26
  * @Description: Coding something
 -->
-# [Spark-Node](https://github.com/theajack/spark-node)
+# [Spark-Nodejs](https://github.com/theajack/spark-node)
 
 [讯飞星火认知大模型](https://xinghuo.xfyun.cn/) Nodejs SDK
 
 ## install 
 
 ```
-npm i spark-node
+npm i spark-nodejs
 ```
 
 ## 使用
