@@ -1,9 +1,11 @@
 {
-    "name": "spark-node",
-    "version": "0.0.1",
+    "name": "spark-nodejs",
+    "version": "0.0.4",
     "description": "讯飞星火认知大模型 Nodejs SDK",
     "main": "index.min.js",
     "typings": "index.min.d.ts",
+    "unpkg": "chat.cdn.js",
+    "jsdelivr": "chat.cdn.js",
     "repository": "git@github.com:theajack/spark-node.git",
     "author": "tackchen <theajack@qq.com>",
     "scripts": {

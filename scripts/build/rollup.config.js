@@ -15,12 +15,18 @@ const { resolveRootPath } = require('../helper/utils');
 
 const extensions = [ '.ts', '.d.ts', '.js' ];
 
+const config = ({
+    main: { i: 'index.ts', o: 'index.min.js', format: 'cjs', name: 'SparkNode' },
+    chat: { i: 'chat.ts', o: 'chat.js', format: 'es', name: 'SparkChat' },
+    cdn: { i: 'chat-cdn.ts', o: 'chat.cdn.js', format: 'umd', name: 'SparkChat' },
+})[process.env.TYPE];
+
 export default {
-    input: resolveRootPath('src/index.ts'),
+    input: resolveRootPath(`src/${config.i}`),
     output: {
-        file: resolveRootPath('npm/index.min.js'),
-        format: 'cjs',
-        name: 'Sener',
+        file: resolveRootPath(`npm/${config.o}`),
+        format: config.format,
+        name: config.name,
     },
     plugins: [
         uglify(),

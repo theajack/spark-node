@@ -5,7 +5,7 @@
 -->
 # [Spark-Nodejs](https://github.com/theajack/spark-node)
 
-[讯飞星火认知大模型](https://xinghuo.xfyun.cn/) Nodejs SDK
+[讯飞星火认知大模型](https://xinghuo.xfyun.cn/) Nodejs SDK & Web使用
 
 ## install 
 
@@ -91,6 +91,47 @@ interface IQuestionOptions {
     onData?(options: {content: string; start: boolean; end: boolean, seq: number}): void;
     onEnd?(options: {content: string, tokens: number, questionTokens: number}): void;
 }
+```
+
+## Web 端使用
+
+spark-node中将消息部分单独打包到 socket 模块，可以在web环境中使用。使用场景为服务端生成url下发，web端调用socket模块发起聊天
+
+```js
+import { SparkChat } from "spark-nodejs/chat";
+const spark = new SparkChat({url: 'xxx'});
+spark.chat({content: 'xxx'}); // chat 参数与上文中的chat参数一致
+```
+
+构造参数：
+
+构造参数如下，除了多了 url 与 urlGetter 参数外，其他与上文一致，url与urlGetter填入一个即可
+
+当填入url时，一次请求结束之后需要手动重新获取url设置
+
+当填入urlGetter时，会自动获取url，推荐使用urlGetter
+
+```ts
+export interface ISparkSocketOptions {
+    url?: string; // 指定url
+    urlGetter?: ()=>Promise<string>; // 自动获取url的函数，一般封装获取url的请求
+    appid?: string;
+    uid?: string;
+    temperature?: number; // 取值为[0,1],默认为0.5	核采样阈值。用于决定结果随机性，取值越高随机性越强即相同的问题得到的不同答案的可能性越高
+    maxTokens?: number; // 取值为[1,4096]，默认为2048	模型回答的tokens的最大长度
+    topK?: number; // 取值为[1，6],默认为4	从k个候选中随机选择⼀个（⾮等概率）
+    chatId?: string; // 需要保障用户下的唯一性	用于关联用户会话
+    useHistory?: boolean; // default: false
+}
+```
+
+### cdn使用
+
+```html
+<script src='https://cdn.jsdelivr.net/npm/spark-nodejs'></script>
+<script>
+const spark = new SparkChat({url: 'xxx'});
+</script>
 ```
 
 ## 关于 useHistory

@@ -5,3 +5,5 @@
  */
 
 export * from './spark';
+
+export * from './chat';

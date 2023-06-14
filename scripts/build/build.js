@@ -9,8 +9,7 @@ const { resolveRootPath, copyFile } = require('../helper/utils');
 const dts = require('rollup-plugin-dts').default;
 const rollup = require('rollup');
 
-async function build () {
-    const version = process.argv[2];
+async function buildBundleBase (type) {
     await execa(
         resolveRootPath('node_modules/rollup/dist/bin/rollup'),
         [
@@ -18,12 +17,19 @@ async function build () {
             resolveRootPath('scripts/build/rollup.config.js'),
             '--environment',
             [
-                `NODE_ENV:production`,
+                `TYPE:${type}`,
+                `ENV:production`,
             ],
         ],
         { stdio: 'inherit' },
     );
+}
 
+async function build () {
+    const version = process.argv[2];
+    await buildBundleBase('main');
+    await buildBundleBase('chat');
+    await buildBundleBase('cdn');
     copyFile({
         src: resolveRootPath('README.md'),
         dest: resolveRootPath('npm/README.md')
@@ -61,7 +67,6 @@ async function builddts ({
     });
 }
 
-
 async function buildBase ({
     inputOptions,
     outputOptions,
@@ -79,6 +84,10 @@ async function buildBase ({
 async function main () {
     await build();
     await builddts();
+    await builddts({
+        input: resolveRootPath('src/chat.ts'),
+        output: resolveRootPath('npm/chat.d.ts'),
+    });
 }
 main();
 

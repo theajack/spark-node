@@ -5,3 +5,4 @@ scripts/dev/*.js
 dist
 *.bundle.js
 *.min.js
+npm

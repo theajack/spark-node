@@ -10,3 +10,4 @@ bundles
 ignore
 *.ignore.ts
 npm
+config.ts

@@ -12,6 +12,18 @@
   <title>Document</title>
 </head>
 <body>
-  <script src="./bundle.min.js"></script>
+  <script src="../../npm/chat.cdn.js"></script>
+  <script>
+    const chat = new SparkChat({
+      appid: "xxx",
+      url: 'xxx'
+    })
+    chat.chat({
+      content: '你好',
+      onData (d) {
+          console.log('onData:', d);
+      },
+    })
+  </script>
 </body>
 </html>
