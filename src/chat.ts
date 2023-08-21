@@ -1,3 +1,4 @@
+import { Socket } from "./node-socket";
 
 export interface ISparkSocketBaseOptions {
     appid?: string;
@@ -64,8 +65,13 @@ export class SparkChat {
         this.uid = uid || Math.random().toString().substring(2);
 
         if (!SparkChat.Socket && 'undefined' !== typeof window && 'undefined' !== typeof window.WebSocket) {
+            // 对于浏览器环境
             // @ts-ignore
             SparkChat.Socket = window.WebSocket;
+        } else if ('undefined' !== typeof window) {
+            // 对于nodejs环境
+            // @ts-ignore
+            SparkChat.Socket = Socket;
         }
     }
 
