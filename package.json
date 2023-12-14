@@ -1,6 +1,6 @@
 {
     "name": "spark-nodejs",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "讯飞星火认知大模型 Nodejs SDK",
     "main": "index.min.js",
     "typings": "index.min.d.ts",

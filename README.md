@@ -29,15 +29,18 @@ const answer = await spark.chat('你好');
 
 ```ts
 export interface ISparkOptions {
-    secret: string;
-    key: string;
-    appid?: string;
-    uid?: string;
+    secret: string; // 从平台获取
+    key: string; // 从平台获取
+    version?: // 非必须 星火大模型版本号 默认为1，支持1,2,3
+    appid?: string; // 应用appid，从开放平台控制台创建的应用中获取
+    uid?: string; // 每个用户的id，用于区分不同用户
     temperature?: number; // 取值为[0,1],默认为0.5	核采样阈值。用于决定结果随机性，取值越高随机性越强即相同的问题得到的不同答案的可能性越高
     maxTokens?: number; // 取值为[1,4096]，默认为2048	模型回答的tokens的最大长度
     topK?: number; // 取值为[1，6],默认为4	从k个候选中随机选择⼀个（⾮等概率）
     chatId?: string; // 需要保障用户下的唯一性	用于关联用户会话
     useHistory?: boolean; // 是否需要使用历史对话记录，对token消耗会很快 default: false
+    versionStr?: // 非必须 API接口的version字段，默认为'', 表示采用version指代的版本号，该字段为了扩展性考虑，可以传入 vx.x 表示任意版本
+
 }
 ```
 

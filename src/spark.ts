@@ -7,9 +7,12 @@ import { hmac, utf8, base64 } from './utils';
 import { IQuestionOptions, ISparkSocketBaseOptions, SparkChat } from './chat';
 import { Socket } from './node-socket';
 
+
 export interface ISparkOptions extends ISparkSocketBaseOptions {
     secret: string;
     key: string;
+    version?: number;
+    versionStr?: '';
 }
 
 export class Spark {
@@ -17,6 +20,8 @@ export class Spark {
     key: string;
 
     socket: SparkChat;
+    version: number;
+    versionStr = '';
 
     constructor ({
         secret,
@@ -28,8 +33,12 @@ export class Spark {
         topK,
         chatId,
         useHistory,
+        version = 1,
+        versionStr = '',
     }: ISparkOptions) {
         if (!key || !secret) throw new Error('Invalid Key Or Secret');
+        this.version = version;
+        this.versionStr = versionStr;
         this.secret = secret;
         this.key = key;
 
@@ -56,7 +65,8 @@ export class Spark {
         for (const k in data) {
             arr.push(`${k}=${data[k]}`);
         }
-        return `wss://spark-api.xf-yun.com/v1.1/chat?${arr.join('&')}`;
+        const vStr = this.versionStr || `v${this.version}.1`;
+        return `wss://spark-api.xf-yun.com/${vStr}/chat?${arr.join('&')}`;
     }
 
     chat (data: IQuestionOptions) {
