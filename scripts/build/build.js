@@ -43,7 +43,7 @@ async function build () {
         dest: resolveRootPath('npm/package.json'),
         json: true,
         handler (pkg) {
-            [ 'nodemonConfig', 'devDependencies' ].forEach(key => {delete pkg[key];});
+            [ 'nodemonConfig', 'devDependencies', 'scripts' ].forEach(key => {delete pkg[key];});
             if (version) pkg.version = version;
             return pkg;
         },

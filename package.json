@@ -8,6 +8,14 @@
     "jsdelivr": "chat.cdn.js",
     "repository": "git@github.com:theajack/spark-node.git",
     "author": "tackchen <theajack@qq.com>",
+    "keywords": [
+        "讯飞星火",
+        "讯飞大模型",
+        "讯飞星火认知大模型",
+        "spark",
+        "spark-node",
+        "spark-nodejs"
+    ],
     "scripts": {
         "lint": "eslint packages --ext ts",
         "_dev": "node scripts/dev.js",

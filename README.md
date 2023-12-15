@@ -40,7 +40,6 @@ export interface ISparkOptions {
     chatId?: string; // 需要保障用户下的唯一性	用于关联用户会话
     useHistory?: boolean; // 是否需要使用历史对话记录，对token消耗会很快 default: false
     versionStr?: // 非必须 API接口的version字段，默认为'', 表示采用version指代的版本号，该字段为了扩展性考虑，可以传入 vx.x 表示任意版本
-
 }
 ```
 
